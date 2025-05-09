@@ -1,7 +1,15 @@
+from dotenv import load_dotenv
+import os
 import requests
 import json
 
-API_KEY = "h7xOFO4HJUCo2/vL0+ZpOg==inaDKdO3kHWscZcv"
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
+
+if not API_KEY:
+    print("Error: API_KEY environment variable not set. Please create a .env file.")
+    exit()
 
 def fetch_data(animal_name):
     """
@@ -19,7 +27,7 @@ def fetch_data(animal_name):
         return None
 
 if __name__ == "__main__":
-
+    # Example usage if you want to run data_fetcher.py directly
     animal_to_search = input("Enter an animal name to fetch data: ")
     data = fetch_data(animal_to_search)
     if data:
